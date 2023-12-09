@@ -18,7 +18,7 @@ Este proyecto, CosmicHub, está actualmente en una fase básica. Queremos inform
 
 ## Tecnología de Desarrollo
 
-Este proyecto, CosmicHub, se está construyendo utilizando la pila tecnológica MEVN, que comprende MongoDB, Express.js, Vue.js y Node.js. Queremos informar que la elección de esta pila tecnológica es parte integral de nuestro enfoque en proporcionar una experiencia robusta y eficiente.
+Este proyecto, CosmicHub, se está construyendo utilizando la pila tecnológica **MEVN**, que comprende **MongoDB, Express.js, Vue.js y Node.js**. Queremos informar que la elección de esta pila tecnológica es parte integral de nuestro enfoque en proporcionar una experiencia robusta y eficiente.
 
 Sin embargo, debido a la naturaleza del desarrollo de software, es posible que experimentes cambios en la tecnología, actualizaciones o ajustes a medida que avanzamos en el proyecto. Estamos comprometidos a utilizar la pila MEVN para aprovechar sus beneficios y ofrecer un producto final de alta calidad.
 

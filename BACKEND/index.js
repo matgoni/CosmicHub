@@ -1,4 +1,5 @@
 import "dotenv/config";
+import "./api/conectdb.js"
 import dotenv from 'dotenv';
 import express from "express";
 

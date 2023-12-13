@@ -4,7 +4,7 @@
     <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
       <div class="container-fluid">
         <router-link to="/" class="navbar-brand">
-          <img src="../src/assets/logo.png" alt="Bootstrap" width="38" height="32">
+          <img src="@/assets/logo.png" alt="CosmicHub Logo" width="38" height="32">
           CosmicHub
         </router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,74 +13,113 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link to="/" class="nav-link ">Inicio</router-link>
+              <router-link to="/" class="nav-link active">Inicio</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/Lanzamientos" class="nav-link ">Lanzamientos</router-link>
+              <router-link to="/Lanzamientos" class="nav-link active">Lanzamientos</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/Astronautas" class="nav-link ">Astronautas</router-link>
+              <router-link to="/Astronautas" class="nav-link active">Astronautas</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/EstacionEspacial" class="nav-link ">Estaciones Espaciales</router-link>
+              <router-link to="/EstacionEspacial" class="nav-link active">Estaciones Espaciales</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/Tienda" class="nav-link ">Tienda</router-link>
+              <router-link to="/Tienda" class="nav-link active">Tienda</router-link>
             </li>
           </ul>
-          <nav class="navbar bg-body-tertiary">
-              <form class="container-fluid justify-content-start">
-                <router-link to="/login" class="btn btn-outline-primary me-2" type="button">Registrarse</router-link>
-                <button class="btn btn-sm btn-outline-secondary" type="button">Iniciar Sesion</button>
-              </form>
-          </nav>
+          <div class="d-flex">
+            <router-link to="/login" class="btn btn-outline-primary me-2" type="button">Registrarse</router-link>
+            <button class="btn btn-outline-secondary" type="button">Iniciar Sesión</button>
+          </div>
         </div>
       </div>
     </nav>
   </header>
-  
-  <!--Content-->
+
+  <!-- Content -->
   <div>
     <router-view />
   </div>
+
   <!-- Footer -->
-  <footer>
-      <div class="social">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
+  <footer class="bg-dark text-white mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>INFORMACIÓN</h5>
+          <p>
+            IPN<br>
+            Ciencia de Datos<br>
+            Diseño de Aplicaciones Web
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h5>Desarrolladores</h5>
+          <ul class="list-unstyled">
+            <li>Ian Mateos</li>
+            <li>Israel Juarez</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Síguenos</h5>
+          <div class="social">
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-facebook-f"></a>
+          </div>
+        </div>
       </div>
-      <p><i>Israel Juarez e Ian Mateos &copy; 2023 </i></p>
+      <hr class="mt-4">
+      <p class="text-center">&copy; 2023 CosmicHub. Todos los derechos reservados.</p>
+    </div>
   </footer>
-  
 </template>
 
 <script>
 export default {
   name: 'App',
-}
+};
 </script>
 
-<style>
+<style scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', 'Helvetica', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background-color: #EEEEEE;
 }
 
+header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+  margin-right: 8px;
+}
+
+.navbar-nav .nav-link {
+  color: #34495e;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #3498db;
+}
+
 footer {
-    background-color: #2b3035;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
+  padding: 40px 0;
 }
 
-footer .social a{
-    font-size: 24px;
-    padding-left: 10px;
-    padding-right: 10px;
+.social a {
+  font-size: 24px;
+  margin: 0 10px;
+  color: #ffffff;
+  transition: color 0.3s;
 }
 
+.social a:hover {
+  color: #3498db;
+}
 </style>
+

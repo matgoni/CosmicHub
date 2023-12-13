@@ -7,6 +7,8 @@ import AstronautasRoute from './api/routes/AstronautasRoutes.js';
 import AstronautasDAO from './dao/AstronautasDAO.js';
 import LanzamientosRoute from './api/routes/LanzamientosRoutes.js';
 import LanzamientosDAO from './dao/LanzamientosDAO.js';
+import TiendaDAO from './dao/TiendaDAO.js';
+import TiendaRoute from './api/routes/TiendaRoutes.js';
 
 class Index {
 	
@@ -25,6 +27,7 @@ class Index {
 		Index.app.use(express.urlencoded({ extended: true }));
 		Index.app.use('/api/v1/', AstronautasRoute.configRoutes(Index.router));
 		Index.app.use('/api/v1/', LanzamientosRoute.configRoutes2(Index.router));
+		Index.app.use('/api/v1/', TiendaRoute.configRoutes(Index.router));
 		Index.app.use('*', (req, res) => {
 			res.status(404).json({ error: 'not found' });
 		});
@@ -39,6 +42,7 @@ class Index {
 			await client.connect();
 			await AstronautasDAO.injectDB(client);
 			await LanzamientosDAO.injectDB(client);
+			await TiendaDAO.injectDB(client);
 			Index.app.listen(port, () => {
                 console.log("Server running 🛰️ http://localhost:" + port);
             });

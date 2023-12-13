@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/HomeView.vue';
 import Astronautas from '../views/AstronautasView.vue';
 import EstacionEspacial from '../views/EstacionView.vue';
-import Lanzamientos from 'LanzamientosView.vue';
-import Tienda from 'TiendaView.vue'
+import Lanzamientos from '../views/LanzamientosView.vue';
+import Tienda from '../views/TiendaView.vue'
 
 const routes = [
   {
@@ -27,7 +27,7 @@ const routes = [
     component: Lanzamientos,
   },
   {
-    path: 'Tienda',
+    path: '/Tienda',
     name: 'Tienda',
     component: Tienda,
   },
@@ -37,4 +37,5 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
 export default router;

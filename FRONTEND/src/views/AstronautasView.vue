@@ -90,7 +90,7 @@ export default{
         },
     },
     getNacionalidades() {
-        this.ratings = ['AO', 'G', 'GP'];
+        this.nacionalidades = ['AO', 'G', 'GP'];
     },
     async filterAstronautas(type) {
         if (type === 'nombre') {
@@ -119,5 +119,6 @@ export default{
 .a-card{
     background-color: #EEEEEE;
     color: #393E46;
+    text-align: justify;
 }
 </style>

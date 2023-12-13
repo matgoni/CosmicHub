@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/HomeView.vue';
 import Astronautas from '../views/AstronautasView.vue';
 import EstacionEspacial from '../views/EstacionView.vue';
-import LanzamientosEspaciale from 'LanzamientsoView.vue';
+import Lanzamientos from 'LanzamientosView.vue';
 import Tienda from 'TiendaView.vue'
 
 const routes = [
@@ -22,9 +22,9 @@ const routes = [
     component: EstacionEspacial,
   },
   {
-    path: '/LanzamientosEspaciales',
-    name: 'LanzamientosEspaciales',
-    component: LanzamientosEspaciales,
+    path: '/Lanzamientos',
+    name: 'Lanzamientos',
+    component: Lanzamientos,
   },
   {
     path: 'Tienda',

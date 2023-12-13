@@ -1,7 +1,9 @@
-import AstronautasControllers from "../controllers/AstronautasControllers.js";
-import express from "express"
-const router = express.Router();
+import AstronautaController from "./AstronautasControllers.js";
 
-router.get("/Astronautas", AstronautasControllers.apiGetAstronautas)
-
-export default router;
+export default class AstronautasRoute {
+	static configRoutes(router) {
+		router.route('/').get(AstronautaController.apiGetAstronautas);
+		router.route('/id/:id').get(AstronautaController.apiGetAstronautaById);
+		router.route('/nacionalidades').get(AstronautaController.apiGetNacionalidades);
+	}
+}

@@ -2,9 +2,9 @@ import AstronautaController from "../controllers/AstronautasControllers.js";
 
 class AstronautasRoute {
 	static configRoutes(router) {
-		router.route('/').get(AstronautaController.apiGetAstronautas);
-		router.route('/id/:id').get(AstronautaController.apiGetAstronautaById);
-		router.route('/nacionalidades').get(AstronautaController.apiGetNacionalidades);
+		router.route('/astronautas').get(AstronautaController.apiGetAstronautas);
+		router.route('/astronautas/id/:id').get(AstronautaController.apiGetAstronautaById);
+		router.route('/astronautas/nacionalidades').get(AstronautaController.apiGetNacionalidades);
         return router;
 	}
 }

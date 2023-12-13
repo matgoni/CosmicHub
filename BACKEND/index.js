@@ -23,8 +23,8 @@ class Index {
 		Index.app.use(cors());
 		Index.app.use(express.json());
 		Index.app.use(express.urlencoded({ extended: true }));
-		Index.app.use('/api/v1/astronautas', AstronautasRoute.configRoutes(Index.router));
-		Index.app.use('/api/v1/lanzamientos', LanzamientosRoute.configRoutes2(Index.router));
+		Index.app.use('/api/v1/', AstronautasRoute.configRoutes(Index.router));
+		Index.app.use('/api/v1/', LanzamientosRoute.configRoutes2(Index.router));
 		Index.app.use('*', (req, res) => {
 			res.status(404).json({ error: 'not found' });
 		});

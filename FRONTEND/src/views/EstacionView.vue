@@ -25,32 +25,31 @@
       </div>
     </section>
 
-    <footer>
-      <div class="container">
-        <p>&copy; 2023 Explora el Espacio</p>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script>
+import EstacionesService from '../services/EstacionesService.js';
+
 export default {
+  name: 'Lanzamiento',
   data() {
     return {
-      estaciones: [
-        {
-          nombre: "Estación Espacial Internacional",
-          descripcion: "Explora la estación espacial con tecnología de vanguardia.",
-          imagen: "https://images.unsplash.com/photo-1614314007212-0257d6e2f7d8?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        },
-        {
-          nombre: "TIANGONG",
-          descripcion: "Sumérgete en la experiencia única de la estación espacial china.",
-          imagen: "https://media.istockphoto.com/id/1164145930/es/foto/tiangong-3-estación-espacial-china-orbitando-el-planeta-tierra-en-el-espacio-negro-con.jpg?s=1024x1024&w=is&k=20&c=4OHPSL3qQ-s5rQ3WzTxqvvGNCegnBtXXIfOHzM3kSvM=",
-        },
-        // Puedes agregar más estaciones según sea necesario
-      ],
+      lanzamientos: [],
     };
+  },
+  created() {
+    this.getLanzamientos();
+  },
+  methods: {
+    async getLanzamientos() {
+      try {
+        const lanzamientosData = await LanzamientosService.getLanzamientos();
+        this.lanzamientos = lanzamientosData.lanzamientos;
+      } catch (error) {
+        console.error('Error al obtener lanzamientos:', error);
+      }
+    },
   },
 };
 </script>
@@ -141,14 +140,5 @@ h2 {
 .card p {
   color: #666;
 }
-
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
 </style>
+

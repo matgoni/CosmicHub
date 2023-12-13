@@ -51,7 +51,7 @@
           <p>
             IPN<br>
             Ciencia de Datos<br>
-            Diseño de Aplicaciones Web
+            Desarrollo de Aplicaciones Web
           </p>
         </div>
         <div class="col-md-4">

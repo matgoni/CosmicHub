@@ -30,18 +30,18 @@
             <div v-for="astronauta in astronautas" class="col" :key="astronautas._id">
                 <div class="card a-card">
                     <div class="card-body">
-                      <h4 class="card-title fw-bold">{{ astronauta.nombre }}</h4>
+                      <h4 class="card-title fw-bold" style="color: #427D9D;">{{ astronauta.nombre }}</h4>
                       <p v-if="astronauta.nacionalidad" class="card-text">
-                        Nacionalidad: {{ astronauta.nacionalidad }}
+                        <b>Nacionalidad:</b> {{ astronauta.nacionalidad }}
                       </p>
                       <p v-if="astronauta.compañia_espacial" class="card-text">
-                        Compañia Espacial: {{ astronauta.compañia_espacial }}
+                        <b>Compañia Espacial: </b>{{ astronauta.compañia_espacial }}
                       </p>
                       <p v-if="astronauta.tiempo_espacio" class="card-text">
-                        Tiempo en el Espacio: {{ astronauta.tiempo_espacio }}
+                        <b>Tiempo en el Espacio:</b> {{ astronauta.tiempo_espacio }}
                       </p>
                       <p v-if="astronauta.misiones" class="card-text">
-                        Número de Misiones: {{ astronauta.misiones }}
+                        <b>Número de Misiones:</b> {{ astronauta.misiones }}
                       </p>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ export default{
         },
     },
     getNacionalidades() {
-        this.nacionalidades = ['AO', 'G', 'GP'];
+        this.nacionalidades = [];
     },
     async filterAstronautas(type) {
         if (type === 'nombre') {

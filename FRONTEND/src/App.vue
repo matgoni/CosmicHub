@@ -69,6 +69,7 @@ export default {
   text-align: center;
   background-color: #EEEEEE;
 }
+
 footer {
     background-color: #2b3035;
     color: white;

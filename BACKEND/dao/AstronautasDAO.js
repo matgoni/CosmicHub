@@ -47,7 +47,7 @@ export default class AstronautasDAO {
     static async getNacionalidades() {
         let nacionalidades = [];
         try {
-            nacionalidades = await AstronautasDAO.astronautas.distinct('rated');
+            nacionalidades = await AstronautasDAO.astronautas.distinct('nacionalidad');
             return nacionalidades;
         } catch (e) {
             console.error(`unable to get nacionalidades, ${e}`);

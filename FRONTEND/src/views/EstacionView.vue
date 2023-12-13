@@ -25,15 +25,12 @@
       </div>
     </section>
 
-    <footer>
-      <div class="container">
-        <p>&copy; 2023 Explora el Espacio</p>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script>
+import EstacionesService from '../services/EstacionesService.js';
+
 export default {
   data() {
     return {
@@ -142,13 +139,4 @@ h2 {
   color: #666;
 }
 
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-</style>
+

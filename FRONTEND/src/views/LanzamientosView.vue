@@ -1,9 +1,9 @@
 <template>
   <div class="launch-container">
-    <div class="alert alert-primary">
+    <div class="alert">
       <div class="card-body text-center">
         <h2 class="title">Lanzamientos Espaciales Recientes</h2>
-        <p>Explora los emocionantes próximos lanzamientos espaciales programados para llevar a cabo misiones innovadoras.</p>
+        <p>Explora los emocionantes lanzamientos espaciales mas recientes para llevar a cabo misiones innovadoras.</p>
       </div>
     </div>
 
@@ -16,7 +16,7 @@
             <br />
             <p class="card-text"><b>Hora:</b> {{ lanzamiento.hora }}</p>
             <p class="card-text"><b>Nación:</b> {{ lanzamiento.nacion }}</p>
-            <p class="card-text"><b>Descripción:</b>{{ lanzamiento.descripcion }}</p>
+            <p class="card-text"><b>Descripción:</b> {{ lanzamiento.descripcion }}</p>
           </div>
           <div class="card-footer">
             <p class="card-text"><b>{{ lanzamiento.cohete }}</b></p>
@@ -55,13 +55,13 @@ export default {
 
 <style scoped>
 .launch-container {
-  background-color: #0E101C;
+  background-color: #000;
   color: #FFF;
   font-family: 'Roboto', sans-serif;
 }
 
 .alert {
-  background-color: #3498db;
+  background-color: #FFC436;
   border: none;
   border-radius: 0;
 }
@@ -93,8 +93,8 @@ export default {
 }
 
 .card-header {
-  background-color: #3498db;
-  color: #FFF;
+  background-color: #fff;
+  color: #000;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 10px;
@@ -103,7 +103,7 @@ export default {
 
 .card-footer {
   background-color: #2C303D;
-  color: #77d0ff;
+  color: #FFF0CE;
   padding: 10px;
 }
 </style>

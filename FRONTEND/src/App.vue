@@ -1,7 +1,7 @@
 <template>
   <!-- Header -->
   <header>
-    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" >
       <div class="container-fluid">
         <router-link to="/" class="navbar-brand">
           <img src="@/assets/logo.png" alt="CosmicHub Logo" width="38" height="32">
@@ -43,7 +43,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="bg-dark text-white mt-5">
+  <footer class=" mt-5">
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -64,9 +64,9 @@
         <div class="col-md-4">
           <h5>Síguenos</h5>
           <div class="social">
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-twitter"></a>
-            <a href="#" class="fab fa-facebook-f"></a>
+            <a class="fab fa-instagram"></a>
+            <a class="fab fa-twitter"></a>
+            <a class="fab fa-facebook-f"></a>
           </div>
         </div>
       </div>
@@ -92,6 +92,7 @@ export default {
 }
 
 header {
+  
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -114,7 +115,7 @@ footer {
 .social a {
   font-size: 24px;
   margin: 0 10px;
-  color: #ffffff;
+  color: #000;
   transition: color 0.3s;
 }
 

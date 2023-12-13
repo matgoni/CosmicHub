@@ -6,7 +6,7 @@
                 <h1 class="text-2xl font-semibold sm:text-4xl">
                 <img src="../assets/logo.png" alt="Bootstrap"  height="57">CosmicHub</h1>
                 <span>Diciembre, 2023</span>
-                <p style="color: white;">¡Bienvenido a CosmicHub, tu destino definitivo para todo lo relacionado con el espacio! 🚀 Explora el cosmos con información actualizada sobre lanzamientos espaciales, perfiles de astronautas, estaciones espaciales e incluso compra productos cósmicos. Únete a nuestra comunidad de entusiastas del espacio mientras nos embarcamos en un viaje a través de la inmensidad del universo. ¡Abrocha tu cinturón y deja que tu curiosidad despegue!</p>
+                <p>¡Bienvenido a CosmicHub, tu destino definitivo para todo lo relacionado con el espacio! 🚀 Explora el cosmos con información actualizada sobre lanzamientos espaciales, perfiles de astronautas, estaciones espaciales e incluso compra productos cósmicos. Únete a nuestra comunidad de entusiastas del espacio mientras nos embarcamos en un viaje a través de la inmensidad del universo. ¡Abrocha tu cinturón y deja que tu curiosidad despegue!</p>
                 <p><hr>Características Clave:</p>
                 <ul>
                 <li>
@@ -34,9 +34,8 @@ export default {
 </script>
 <style>
 .card {
-    background-color: #222831;
+    background-color: #FFC436;
     margin: 2%;
-    color: white;
     padding: 25px;
     border-radius: 15px;
     text-align: justify;

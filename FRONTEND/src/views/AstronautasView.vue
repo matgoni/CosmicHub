@@ -31,7 +31,7 @@
         <div v-for="astronauta in astronautas" :key="astronauta._id" class="col">
         <div class="card a-card">
             <div class="card-body">
-            <h4 class="card-title fw-bold" style="color: #427D9D;">{{ astronauta.nombre }}</h4>
+            <h4 class="card-title fw-bold" style="color: #0174BE;">{{ astronauta.nombre }}</h4>
             <p v-if="astronauta.nacionalidad" class="card-text">
                 <b>Nacionalidad:</b> {{ astronauta.nacionalidad }}
             </p>
@@ -104,13 +104,14 @@ text-align: justify;
 }
 
 .btn-primary {
-background-color: #3498db;
-border-color: #3498db;
+background-color: #FFC436;
+border-color: #FFC436;
 }
 
 .btn-primary:hover {
-background-color: #2181b4;
-border-color: #2181b4;
+background-color: #FFF0CE;
+border-color: #FFF0CE;
+color: #000;
 }
 </style>
   

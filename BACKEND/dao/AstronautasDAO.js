@@ -10,7 +10,7 @@ export default class AstronautasDAO {
         }
         try {
             AstronautasDAO.astronautas= await conn.db(process.env.ASTRONAUTAS_NS)
-                .collection('astronautas');
+                .collection('Astronautas');
         } catch (e) {
             console.error(`unable to connect in AstronautasDAO: ${e}`);
         }
@@ -50,7 +50,7 @@ export default class AstronautasDAO {
             nacionalidades = await AstronautasDAO.astronautas.distinct('rated');
             return nacionalidades;
         } catch (e) {
-            console.error('unable to get nacionalidades, $(e)');
+            console.error(`unable to get nacionalidades, ${e}`);
             return nacionalidades;
         }
     }

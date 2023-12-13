@@ -29,25 +29,25 @@
 </template>
 
 <script>
-import EstacionesService from '../services/EstacionesService.js';
+import EstacionesService from '../services/EstacionesServices.js';
 
 export default {
-  name: 'Lanzamiento',
+  name: 'Estacion',
   data() {
     return {
-      lanzamientos: [],
+      estaciones: [],
     };
   },
   created() {
-    this.getLanzamientos();
+    this.getEstaciones();
   },
   methods: {
-    async getLanzamientos() {
+    async getEstaciones() {
       try {
-        const lanzamientosData = await LanzamientosService.getLanzamientos();
-        this.lanzamientos = lanzamientosData.lanzamientos;
+        const estacionesData = await EstacionesService.getLanzamientos();
+        this.estaciones = estacionesData.estaciones;
       } catch (error) {
-        console.error('Error al obtener lanzamientos:', error);
+        console.error('Error al obtener estaciones:', error);
       }
     },
   },

@@ -1,4 +1,5 @@
 <template>
+  <img  class="img-fluid" src="https://s1.eestatic.com/2023/01/13/actualidad/733436886_230118759_1706x960.jpg" alt="" >
   <div class="launch-container">
     <div class="alert">
       <div class="card-body text-center">
@@ -54,6 +55,12 @@ export default {
 </script>
 
 <style scoped>
+
+.img-fluid {
+  width: 100%;
+  max-height: 500px; /* Puedes ajustar la altura según tus preferencias */
+  object-fit: cover; /* Para recortar la imagen y mantener la proporción */
+}
 .launch-container {
   background-color: #000;
   color: #FFF;

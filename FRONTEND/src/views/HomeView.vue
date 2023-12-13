@@ -1,9 +1,10 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <img src="imagenes/img1.jpg" alt="" class="object-cover w-full h-64 rounded sm:h-100 lg:col-span-7 dark:bg-gray-500">
+            <img src="https://images.ctfassets.net/xuqkguafrpu1/4H8IARrsb6HGiyFGZi5z5V/99d5d7824d1193e50d6e38560c14a92c/grandarmy_supercluster_illustrations01_2023-12-04.jpg?q=80&fl=progressive" alt="" class="object-cover w-full h-64 rounded sm:h-100 lg:col-span-7 dark:bg-gray-500">
             <div class="card2">
-                <h1 class="text-2xl font-semibold sm:text-4xl">CosmicHub</h1>
+                <h1 class="text-2xl font-semibold sm:text-4xl">
+                <img src="../assets/logo.png" alt="Bootstrap"  height="57">CosmicHub</h1>
                 <span>Diciembre, 2023</span>
                 <p style="color: white;">¡Bienvenido a CosmicHub, tu destino definitivo para todo lo relacionado con el espacio! 🚀 Explora el cosmos con información actualizada sobre lanzamientos espaciales, perfiles de astronautas, estaciones espaciales e incluso compra productos cósmicos. Únete a nuestra comunidad de entusiastas del espacio mientras nos embarcamos en un viaje a través de la inmensidad del universo. ¡Abrocha tu cinturón y deja que tu curiosidad despegue!</p>
                 <p><hr>Características Clave:</p>
@@ -22,6 +23,7 @@
                 </li>
                 </ul>
             </div>
+            
         </div>
     </div>
 </template>
@@ -42,5 +44,24 @@ export default {
 .card2{
     margin: 2%;
     padding: 10px 25px;
+}
+img.dark\:bg-gray-500 {
+    object-fit: cover;
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 24rem;
+    position: relative;
+}
+
+/* Estilo para el fondo negro semi-transparente */
+img.dark\:bg-gray-500:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Ajusta el valor alpha para controlar la opacidad */
+    z-index: 1;
 }
 </style>

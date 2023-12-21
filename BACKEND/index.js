@@ -11,6 +11,8 @@ import TiendaDAO from './dao/TiendaDAO.js';
 import TiendaRoute from './api/routes/TiendaRoutes.js';
 import EstacionesDAO from './dao/EstacionesDAO.js';
 import EstacionesRoute from './api/routes/EstacionesRoutes.js';
+import UserRoute from './api/routes/UsersRoutes.js';
+import UsersDAO from './dao/UsersDAO.js'
 
 class Index {
 	
@@ -31,6 +33,7 @@ class Index {
 		Index.app.use('/api/v1/', LanzamientosRoute.configRoutes(Index.router));
 		Index.app.use('/api/v1/', TiendaRoute.configRoutes(Index.router));
 		Index.app.use('/api/v1/', EstacionesRoute.configRoutes(Index.router));
+		Index.app.use('/api/v1/', UserRoute.configRoutes(Index.router));
 		Index.app.use('*', (req, res) => {
 			res.status(404).json({ error: 'not found' });
 		});
@@ -47,6 +50,7 @@ class Index {
 			await LanzamientosDAO.injectDB(client);
 			await TiendaDAO.injectDB(client);
 			await EstacionesDAO.injectDB(client);
+			await UsersDAO.injectDB(client);
 			Index.app.listen(port, () => {
                 console.log("Server running 🛰️ http://localhost:" + port);
             });

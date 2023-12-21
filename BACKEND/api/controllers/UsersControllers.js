@@ -3,7 +3,10 @@ import UsersDAO from '../../dao/UsersDAO.js';
 export default class UserController {
     static async apiPostRegister(req, res, next) {
         try {
-            const { name, email, password, confirm_password } = req.body;
+            const name = req.body.name;
+            const email = req.body.email;
+            const password = req.body.password;
+            const confirm_password = req.body.confirm_password;
 
             if (!email || !name || !password || !confirm_password) {
                 return res.status(400).json({ error: "Todos los campos son obligatorios." });
@@ -12,13 +15,25 @@ export default class UserController {
             if (password !== confirm_password) {
                 return res.status(400).json({ error: "Las contraseñas no coinciden." });
             }
-
-            const userResponse = await UsersDAO.register(name, email, password);
-            if (userResponse.error) {
-                return res.status(400).json({ error: userResponse.error });
+            let UserResponse = await UsersDAO.findByEmail(
+                email,
+            );
+            if (UserResponse) {
+                return res.status(400).json({
+                    error: "Email already registered."
+                });
+            }
+            UserResponse = await UsersDAO.register(
+                name,
+                email,
+                password
+            );
+            console.log(UserResponse);
+            if (UserResponse.error) {
+                return res.status(400).json({ error: UserResponse.error });
             }
 
-            res.json({ success: true, user: userResponse });
+            res.json({ success: true, user: UserResponse });
         } catch (e) {
             console.log("Error en apiPostRegister", e);
             res.status(500).json({ error: "Internal server error" });

@@ -13,9 +13,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: {
-      requiresGuest: true
-    }
+
   },
   {
     path: '/Astronautas',
@@ -76,14 +74,14 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.isLoggedIn) {
       // Redirect to the Login Page
-      next('/login');
+      next('/Login');
     } else {
       next();
     }
   } else if (to.matched.some(record => record.meta.requiresGuest)) {
     if (store.getters.isLoggedIn) {
       // Redirect to the Login Page
-      next('/movies');
+      next('/Lanzamientos');
     } else {
       next();
     }

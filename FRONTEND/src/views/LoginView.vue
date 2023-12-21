@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <h2>Iniciar sesión</h2>
-    <form @submit="login">
+    <form @submit.prevent="loginUser">
       <div class="form-group">
         <label for="email">Correo electrónico</label>
         <input type="email" id="email" v-model="email" required>
@@ -10,7 +10,8 @@
         <label for="password">Contraseña</label>
         <input type="password" id="password" v-model="password" required>
       </div>
-      <button type="submit">Iniciar sesión</button>
+      <input type="submit" class="btn btn-primary" value="Login">
+      &nbsp;&nbsp;&nbsp;&nbsp;
       <router-link to="/Registro" class="btn btn-link">No tienes una cuenta? Registro</router-link>
     </form>
   </div>
@@ -29,22 +30,20 @@ export default {
     methods: {
         ...mapActions(["login"]),
         loginUser() {
-            let user = {
-                email: this.email,
-                password: this.password
-            };
-            console.log(user);
-            this.login(user)
-                .then(res => {
-                    if (res.data.success) {
-                        this.$router.push("/Astronautas");
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        }
+        let user = {
+            email: this.email,
+            password: this.password
+        };
+        this.login(user).then(res => {
+            if (res.data.success) {
+                this.$router.push("/");
+            }
+        }).catch(err => {
+            // Manejar errores de la solicitud
+            console.error("Error en la solicitud: ", err);
+        });
     }
+  }
 };
 </script>
  

@@ -72,7 +72,8 @@ export default {
             let user = {
                 name: this.name,
                 email: this.email,
-                password: this.password
+                password: this.password,
+                confirm_password: this.confirm_password
             };
 
             this.register(user).then(res => {

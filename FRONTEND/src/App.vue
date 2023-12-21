@@ -31,8 +31,8 @@
           <div class="d-flex">
             <router-link v-if="!isLoggedIn" to="/Registro" class="btn btn-outline-primary me-2" type="button">Registrarse</router-link>
             <router-link v-if="!isLoggedIn" to="/Login" class="btn btn-outline-secondary" type="button">Iniciar Sesión</router-link>
-            <a v-if="isLoggedIn" class="nav-link active pointer">
-              <a to="/logout" @click.prevent="logoutUser">Logout</a>
+            <a v-if="isLoggedIn" class="btn btn-outline-secondary">
+              <a to="/logout" @click.prevent="logoutUser">Cerrar Sesión</a>
             </a>
           </div>
         </div>

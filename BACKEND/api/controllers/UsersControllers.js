@@ -4,14 +4,24 @@ export default class UserController {
     static async apiPostRegister(req, res, next) {
         try {
             const { name, email, password, confirm_password } = req.body;
+
+            if (!email || !name || !password || !confirm_password) {
+                return res.status(400).json({ error: "Todos los campos son obligatorios." });
+            }
+
             if (password !== confirm_password) {
-                return res.status(400).json({ error: "Passwords do not match." });
+                return res.status(400).json({ error: "Las contraseñas no coinciden." });
             }
 
             const userResponse = await UsersDAO.register(name, email, password);
+            if (userResponse.error) {
+                return res.status(400).json({ error: userResponse.error });
+            }
+
             res.json({ success: true, user: userResponse });
         } catch (e) {
-            res.status(500).json({ error: e.message });
+            console.log("Error en apiPostRegister", e);
+            res.status(500).json({ error: "Internal server error" });
         }
     }
 
@@ -19,19 +29,24 @@ export default class UserController {
         try {
             const { email, password } = req.body;
 
-            const userResponse = await UsersDAO.login(email, password);
-            if (userResponse.error) {
-                return res.status(400).json(userResponse);
+            if (!email || !password) {
+                return res.status(400).json({ error: "Correo electrónico y contraseña son obligatorios." });
             }
 
-            res.status(200).json({
+            const userResponse = await UsersDAO.login(email, password);
+            if (userResponse.error) {
+                return res.status(400).json({ error: userResponse.error });
+            }
+
+            res.json({
                 success: true,
                 token: `Bearer ${userResponse.token}`,
                 user: userResponse.user,
-                msg: "Hurry! You are now logged in."
+                msg: "¡Inicio de sesión exitoso!"
             });
         } catch (e) {
-            res.status(500).json({ error: e.message });
+            console.log("Error en apiPostLogin", e);
+            res.status(500).json({ error: "Internal server error" });
         }
     }
 
@@ -40,12 +55,13 @@ export default class UserController {
             const { email } = req.params;
             const userResponse = await UsersDAO.findByEmail(email);
             if (!userResponse) {
-                return res.status(404).json({ error: "User not found" });
+                return res.status(404).json({ error: "Usuario no encontrado" });
             }
 
             res.json({ success: true, user: userResponse });
         } catch (e) {
-            res.status(500).json({ error: e.message });
+            console.log("Error en apiGetFindByEmail", e);
+            res.status(500).json({ error: "Internal server error" });
         }
     }
 }

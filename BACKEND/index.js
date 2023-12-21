@@ -26,7 +26,12 @@ class Index {
 	}
 
 	static setUpServer() {
-		Index.app.use(cors());
+		Index.app.use(cors({
+			origin: 'http://localhost:8080', // Sustituye con el origen de tu frontend
+			methods: ['GET', 'POST', 'PUT', 'DELETE'],
+			allowedHeaders: ['Content-Type', 'Authorization']
+		}));
+		
 		Index.app.use(express.json());
 		Index.app.use(express.urlencoded({ extended: true }));
 		Index.app.use('/api/v1/', AstronautasRoute.configRoutes(Index.router));

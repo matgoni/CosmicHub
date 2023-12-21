@@ -1,209 +1,97 @@
 <template>
-    <div class="container_items">
-        <div class="container__background-triangle">
-            <div class="triangle triangle1"></div>
-            <div class="triangle triangle2"></div>
-            <div class="triangle triangle3"></div>
+<div class="store">
+    <h2 class="store-title">Tienda de CosmicHub</h2>
+    <div class="products">
+      <div v-for="producto in productos" :key="producto._id" class="product">
+        <img :src="producto.img-src" class="product-image">
+        <div class="product-details">
+          <h3 class="product-name">{{ producto.producto }}</h3>
+          <p class="product-description">{{ producto.descripcion }}</p>
+          <p class="product-price">$ {{ producto.precio }}</p>
+          <button @click="addToCart(producto)" class="add-to-cart-button">Agregar al carrito</button>
         </div>
-        <div class="container__cards">
-            <div class="card">
-                <div class="cover__card">
-                    <img src="images/img-1.jpg" alt="">
-                </div>
-                <h2>Sabemos cómo aumentar los beneficios</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui sunt eius dolore pariatur. Error, provident et similique sunt voluptate odit eos facere expedita, culpa at officia magnam quia vel eius!</p>
-                <hr>
-                <div class="footer__card">
-                    <h3 class="user__name">Mamie Barnett</h3>
-                    <i>08 Marzo</i>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </template>
+
 <script>
+import TiendaService from '../services/TiendaService.js';
+
+export default {
+  name: 'Producto',
+  data() {
+    return {
+      productos: [],
+    };
+  },
+  created() {
+    this.getProductos();
+  },
+  methods: {
+    async getProductos() {
+      try {
+        const productosData = await TiendaService.getProductos();
+        this.productos = productosData.productos;
+      } catch (error) {
+        console.error('Error al obtener productos:', error);
+      }
+    },
+  },
+};
 </script>
+
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+.store {
+  text-align: center;
+  padding: 20px;
 }
 
-container_items{
-    background-color: #212025;
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
-.container__background-triangle{
-    max-width: 1200px;
-    height: 600px;
-    margin: auto;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.product {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 300px;
+  text-align: center;
 }
 
-.triangle{
-    width: 300px;
-    height: 300px;
-    background: red;
-    position: absolute;
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
-.triangle1{
-    width: 250px;
-    height: 250px;
-    background: linear-gradient(to left, #0ea1e6, #1e67c7);
-    right: 100px;
-    top: 100px;
-    animation: t1 8s ease infinite;
+.product-name {
+  font-size: 1.2rem;
+  margin: 10px 0;
 }
 
-.triangle2{
-    width: 200px;
-    height: 200px;
-    background: linear-gradient(to left, #ee8105, #c7371e);
-    top: 350px;
-    animation: t2 9s ease infinite;
+.product-description {
+  margin: 10px 0;
 }
 
-.triangle3{
-    width: 300px;
-    height: 300px;
-    background: linear-gradient(to left, #1b8fc5, #df0f8f);
-    left: 200px;
-    animation: t3 7s ease infinite;
+.product-price {
+  font-weight: bold;
+  margin: 10px 0;
 }
 
-@keyframes t1 {
-    0%{
-        transform: rotate(45deg) translateY(0px);
-    }
-    50%{
-        transform: rotate(45deg) translateY(20px);
-    }
-    100%{
-        transform: rotate(45deg) translateY(0px);
-    }
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
 }
 
-@keyframes t2 {
-    0%{
-        transform: rotate(65deg) translateY(0px);
-    }
-    50%{
-        transform: rotate(65deg) translateY(20px);
-    }
-    100%{
-        transform: rotate(65deg) translateY(0px);
-    }
-}
-
-@keyframes t3 {
-    0%{
-        transform: rotate(45deg) translateY(0px);
-    }
-    50%{
-        transform: rotate(45deg) translateY(20px);
-    }
-    100%{
-        transform: rotate(45deg) translateY(0px);
-    }
-}
-
-
-.container__cards{
-    width:100%;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.card{
-    width: 350px;
-    margin: 10px;
-    padding: 20px;
-    box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
-    background: rgba(255, 255, 255, 0.1);
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: all 300ms;
-}
-
-.card:hover{
-    transform: translateY(-10px);
-}
-
-.card:hover .cover__card img{
-    transform: scale(1.1);
-}
-
-.cover__card{
-    width: 100%;
-    height: 180px;
-    border-radius: 14px;
-    overflow: hidden;
-}
-
-.cover__card img{
-    width: 110%;
-    transition: all 300ms;
-}
-
-.card h2{
-    font-size: 20px;
-    font-weight: 400;
-    margin-top: 20px;
-    color: #fff;
-}
-
-.card p{
-    margin-top: 20px;
-    font-size: 14px;
-    font-weight: 300;
-    color: #fff;
-    letter-spacing: 0.5px;
-}
-
-.card hr{
-    margin-top: 30px;
-    border: none;
-    height: 0.2px;
-    background: #41414138;
-}
-
-.footer__card{
-    margin-top: 10px;
-    display: flex;
-    color: #fff;
-    justify-content: space-between;
-}
-
-.footer__card h3{
-    font-size: 15px;
-    font-weight: 500;
-}
-
-@media screen and (max-width:1200px) {
-    .container__cards{
-        position: relative;
-        top: 0;
-        left: 0;
-        transform: none;
-        margin-top: 100px;
-        padding-bottom: 100px;
-    }
+button:hover {
+  background-color: #0056b3;
 }
 </style>

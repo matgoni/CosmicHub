@@ -11,7 +11,7 @@
       <div class="container">
         <h2>Estaciones Espaciales</h2>
 
-        <div v-for="(estacion, index) in estaciones" :key="index" class="card">
+        <div v-for="estacion in estaciones" :key="estacion._id" class="card">
           <div class="card-content">
             <div class="card-img">
               <img :src="estacion.imagen" :alt="estacion.nombre">
@@ -44,7 +44,7 @@ export default {
   methods: {
     async getEstaciones() {
       try {
-        const estacionesData = await EstacionesService.getLanzamientos();
+        const estacionesData = await EstacionesService.getEstaciones();
         this.estaciones = estacionesData.estaciones;
       } catch (error) {
         console.error('Error al obtener estaciones:', error);

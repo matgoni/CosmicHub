@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 export default class AstronautasService {
-  static async getAstronautas(query = '', by = 'nombre', page = 0) {
+  static async getAstronautas(query = '', by = '', page = 0) {
+    const a =`http://localhost:8000/api/v1/astronautas?${by}=${query}&page=${page}`;
+    console.log(a);
     try {
       const res = await axios.get(
         `http://localhost:8000/api/v1/astronautas?${by}=${query}&page=${page}`

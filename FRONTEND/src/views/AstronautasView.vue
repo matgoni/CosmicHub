@@ -5,7 +5,7 @@
     <div class="row mb-3">
         <div class="col">
         <div class="input-group">
-            <input v-model="NombreToSearch" class="form-control" placeholder="Buscar por Nombre" />
+            <input v-model="NombreToSearch" class="form-control"  placeholder="Buscar por Nombre" />
             <button @click="filterAstronautas('nombre')" class="btn btn-primary ms-2">
             Buscar
             </button>

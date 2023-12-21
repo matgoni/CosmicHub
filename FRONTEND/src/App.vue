@@ -29,8 +29,11 @@
             </li>
           </ul>
           <div class="d-flex">
-            <router-link to="/login" class="btn btn-outline-primary me-2" type="button">Registrarse</router-link>
-            <button class="btn btn-outline-secondary" type="button">Iniciar Sesión</button>
+            <router-link v-if="!isLoggedIn" to="/Registro" class="btn btn-outline-primary me-2" type="button">Registrarse</router-link>
+            <router-link v-if="!isLoggedIn" to="/Login" class="btn btn-outline-secondary" type="button">Iniciar Sesión</router-link>
+            <a v-if="isLoggedIn" class="nav-link active pointer">
+              <a to="/logout" @click.prevent="logoutUser">Logout</a>
+            </a>
           </div>
         </div>
       </div>
@@ -43,10 +46,10 @@
   </div>
 
   <!-- Footer -->
-  <footer class=" mt-5">
-    <div class="container">
+  <footer class="mt-5 bg-body-secondary">
+    <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12">
           <h5>INFORMACIÓN</h5>
           <p>
             IPN<br>
@@ -54,34 +57,47 @@
             Desarrollo de Aplicaciones Web
           </p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12">
           <h5>Desarrolladores</h5>
           <ul class="list-unstyled">
             <li>Ian Mateos</li>
             <li>Israel Juarez</li>
           </ul>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12">
           <h5>Síguenos</h5>
           <div class="social">
-            <a class="fab fa-instagram"></a>
-            <a class="fab fa-twitter"></a>
-            <a class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-facebook-f"></a>
           </div>
         </div>
       </div>
-      <hr class="mt-4">
-      <p class="text-center">&copy; 2023 CosmicHub. Todos los derechos reservados.</p>
+      <hr class="my-4">
+      <p class="text-center text-muted">&copy; 2023 CosmicHub. Todos los derechos reservados.</p>
     </div>
   </footer>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+import Errors from "./components/Errors.vue";
 export default {
   name: 'App',
+  components: {
+    Errors
+  },
+  computed: {
+    ...mapGetters(["isLoggedIn","error"])
+  },
+  methods: {
+    ...mapActions(["logout"]),
+    logoutUser() {
+      this.logout();
+    }
+  }
 };
 </script>
-
 <style scoped>
 #app {
   font-family: 'Avenir', 'Helvetica', 'Arial', sans-serif;
@@ -121,6 +137,13 @@ footer {
 
 .social a:hover {
   color: #3498db;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .social a {
+    font-size: 18px; /* Ajusta el tamaño de los íconos de redes sociales para pantallas más pequeñas */
+  }
 }
 </style>
 

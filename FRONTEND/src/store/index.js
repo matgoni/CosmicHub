@@ -1,7 +1,12 @@
 import { createStore } from 'vuex';
+import Auth from './Auth.js';
 
 export default createStore({
   state: {
+    user: {
+      id: '',
+      email: '',
+    },
   },
   getters: {
   },
@@ -10,5 +15,6 @@ export default createStore({
   actions: {
   },
   modules: {
+    Auth
   },
 });

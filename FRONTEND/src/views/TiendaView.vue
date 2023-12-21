@@ -1,18 +1,28 @@
 <template>
-<div class="store">
-    <h2 class="store-title">Tienda de CosmicHub</h2>
+  <section class="store">
+    <header>
+      <h2 class="store-title">Tienda de CosmicHub</h2>
+    </header>
+
     <div class="main-content">
-      <div class="products">
-        <div v-for="producto in productos" :key="producto._id" class="product">
-          <img :src="producto['img-src']" class="product-image">
+      <section class="products">
+        <article v-for="producto in productosPaginados" :key="producto._id" class="product">
+          <img :src="producto['img-src']" :alt="'Imagen de ' + producto.producto" class="product-image">
           <div class="product-details">
             <h3 class="product-name">{{ producto.producto }}</h3>
             <p class="product-description">{{ producto.descripcion }}</p>
             <p class="product-price">${{ producto.precio }} USD</p>
             <button @click="addToCart(producto)" class="add-to-cart-button">Agregar al carrito</button>
           </div>
-        </div>
-      </div>
+        </article>
+        <nav class="pagination-controls">
+          <button v-for="pagina in numeroTotalDePaginas" :key="pagina" @click="cambiarPagina(pagina)">
+            {{ pagina }}
+          </button>
+        </nav>
+      </section>
+      
+
       <aside class="cart">
         <h3>Lista de compras</h3>
         <div v-for="item in carrito" :key="item._id" class="cart-item">
@@ -25,10 +35,10 @@
         </div>
         <button @click="checkout" class="checkout-button">Checkout</button>
       </aside>
-    
-  </div>
-</div>
+    </div>
+  </section>
 </template>
+
 
 <script>
 import TiendaService from '../services/TiendaService.js';
@@ -38,7 +48,9 @@ export default {
   data() {
     return {
       productos: [],
-      carrito: [], // Añade el carrito aquí
+      carrito: [],
+      paginaActual: 1,
+      productosPorPagina: 3,
     };
   },
   created() {
@@ -50,6 +62,29 @@ export default {
         return total + (item.precio * item.cantidad);
       }, 0);
     },
+    productosPaginados() {
+    const inicio = (this.paginaActual - 1) * this.productosPorPagina;
+    const fin = inicio + this.productosPorPagina;
+    return this.productos.slice(inicio, fin);
+    },
+    numeroTotalDePaginas() {
+      return Math.ceil(this.productos.length / this.productosPorPagina);
+    },
+    paginasVisibles() {
+      let paginas = [];
+      let start = Math.max(this.paginaActual - 2, 1);
+      let end = Math.min(start + 4, this.numeroTotalDePaginas);
+
+      if (end === this.numeroTotalDePaginas) {
+        start = Math.max(end - 4, 1);
+      }
+
+      for (let i = start; i <= end; i++) {
+        paginas.push(i);
+      }
+
+      return paginas;
+    }
   },
   methods: {
     async getProductos() {
@@ -88,11 +123,12 @@ export default {
         alert("Tu carrito está vacío");
       }
     },
+    cambiarPagina(pagina) {
+      this.paginaActual = pagina;
+    }
   },
 };
 </script>
-
-
 <style scoped>
 .store {
   display: flex;
@@ -118,6 +154,7 @@ export default {
   gap: 20px;
   padding: 10px;
 }
+
 .product {
   background: linear-gradient(to right, #ffffff, #f7f7f7);
   border-radius: 15px;
@@ -125,47 +162,40 @@ export default {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .product:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
 }
-
 .product-image {
   width: 90%;
   height: 200px;
   object-fit: cover;
+  margin: auto; /* Centrar la imagen */
   transition: transform 0.3s ease;
 }
-
 .product-image:hover {
   transform: scale(1.05);
 }
-
 .product-details {
   padding: 15px;
 }
-
 .product-name {
   font-size: 1.4rem;
   color: #333;
   margin: 10px 0;
   text-shadow: 1px 1px 2px #ccc;
 }
-
 .product-description {
   color: #666;
   font-size: 0.9rem;
   margin: 5px 0;
 }
-
 .product-price {
   font-weight: bold;
   font-size: 1.2rem;
   color: #007bff;
   margin: 10px 0;
 }
-
 .add-to-cart-button {
   background-color: #007bff;
   color: white;
@@ -175,12 +205,10 @@ export default {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
 .add-to-cart-button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
 }
-
 .cart {
   flex-basis: 300px; /* Ancho del carrito */
   padding: 20px;
@@ -188,20 +216,43 @@ export default {
   border-radius: 10px;
   margin-left: 20px;
 }
-
 .checkout-button {
-    background-color: #28a745; /* Color verde */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px; /* Espacio sobre el botón */
-  }
+  background-color: #28a745; /* Color verde */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px; /* Espacio sobre el botón */
+}
+.checkout-button:hover {
+  background-color: #218838; /* Color verde oscuro */
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
 
-  .checkout-button:hover {
-    background-color: #218838; /* Color verde oscuro */
-  }
+.pagination-controls button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-controls button:hover {
+  background-color: #0056b3;
+}
+
+.pagination-controls button.active {
+  background-color: #0056b3;
+}
 
 
 /* Estilos para dispositivos más pequeños */
@@ -209,32 +260,25 @@ export default {
   .main-content {
     flex-direction: column;
   }
-
   .products, .cart {
     width: 100%;
     margin-left: 0;
     margin-bottom: 20px;
   }
-
   .cart {
     order: -1; /* Muestra el carrito arriba en dispositivos pequeños */
   }
 }
-
 .remove-from-cart-button {
-    background-color: #ff6347; /* Color rojo-tomate */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-left: 10px; /* Espacio a la izquierda del botón */
-  }
-
-  .remove-from-cart-button:hover {
-    background-color: #e55347; /* Color rojo más oscuro para el hover */
-  }
-/* Resto de los estilos del producto, imagen, etc., se mantienen igual */
+  background-color: #ff6347; /* Color rojo-tomate */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px; /* Espacio a la izquierda del botón */
+}
+.remove-from-cart-button:hover {
+  background-color: #e55347; /* Color rojo más oscuro para el hover */
+}
 </style>
-
-

@@ -17,8 +17,13 @@
               <img :src="estacion.imagen" :alt="estacion.nombre">
             </div>
             <div class="card-info">
-              <h3>{{ estacion.nombre }}</h3>
-              <p>{{ estacion.descripcion }}</p>
+              <h3 >{{ estacion.nombre }}</h3>
+              <h4 style="color: black;">Puertos</h4>
+              <ul>
+                <li v-for="puerto in estacion.puertos" :key="puerto.numero" class="puerto">
+                  {{ puerto.modulo }} ({{ puerto.nacionalidad }}) - {{ puerto.fecha }}
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -139,6 +144,10 @@ h2 {
 
 .card p {
   color: #666;
+}
+
+.puerto {
+  color: black;
 }
 </style>
 
